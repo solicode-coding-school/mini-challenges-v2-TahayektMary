@@ -1,0 +1,130 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: 'Arial', sans-serif;
+  background-color: #dbecf0;
+  color: #333;
+  padding: 20px;
+}
+
+.summary {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 50px;
+}
+
+.summary-item {
+  background-color: white;
+  padding: 10px;
+  border-radius: 20px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  text-align: center;
+  width: 10%;
+}
+
+.income {
+  color: green;
+  font-weight: bold;
+}
+
+.spent {
+  color: red;
+  font-weight: bold;
+}
+
+.available {
+  color: #333;
+  font-weight: bold;
+}
+
+.transaction-form {
+  justify-content: space-between;
+  margin-bottom: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  gap: 5px;
+}
+
+.transaction-form input:nth-child(1) {
+  width: 400px;
+  text-align: center;
+  border-radius: 20px;
+}
+
+.transaction-form input:nth-child(2) {
+  width: 100px;
+  text-align: center;
+  border-radius: 20px;
+}
+
+.transaction-form input {
+  width: 40%;
+  padding: 10px;
+  border: 1px solid #ffffff;
+  border-radius: 8px;
+  border-radius: 20px;
+}
+
+.buttons {
+  display: flex;
+  gap: 10px;
+  justify-content: center;
+}
+
+.add-income,
+.add-expense {
+  padding: 10px 20px;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+}
+
+.add-income {
+  background-color: #2eb0a1;
+  color: white;
+  border-radius: 20px;
+}
+
+.add-expense {
+  background-color: #b13c33;
+  color: white;
+  border-radius: 20px;
+}
+
+.transactions {
+  display: flex;
+  justify-content: space-between;
+}
+
+.income-section,
+.expenses-section {
+  width: 48%;
+  text-align: center;
+}
+
+h2 {
+  margin-bottom: 10px;
+  color: #2a9d8f;
+}
+
+.transaction-item {
+  background-color: white;
+  padding: 10px;
+  border-radius: 20px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 10px;
+}
+
+#Erreur {
+  color: #b13c33;
+  visibility: hidden;
+}
