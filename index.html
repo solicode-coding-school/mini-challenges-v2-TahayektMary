@@ -5,78 +5,52 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Budget Tracker</title>
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" rel="stylesheet">
   <link rel="stylesheet" href="style.css">
 </head>
 
 <body>
-  <div class="summary">
-    <div class="summary-item">
-      <p>Money Earned</p>
-      <p id="money-earned" class="income">$4500.00</p>
+    <div class="summary">
+      <div class="summary-item">
+        <p>Money Earned</p>
+        <p id="money-earned" class="income">$00.00</p>
+      </div>
+      <div class="summary-item">
+        <p>Money Available</p>
+        <p id="money-available" class="available">$00.00</p>
+      </div>
+      <div class="summary-item">
+        <p>Money Spent</p>
+        <p id="money-spent" class="spent">$00.00</p>
+      </div>
     </div>
-    <div class="summary-item">
-      <p>Money Available</p>
-      <p id="money-available" class="available">$3364.15</p>
-    </div>
-    <div class="summary-item">
-      <p>Money Spent</p>
-      <p id="money-spent" class="spent">$1135.85</p>
-    </div>
-  </div>
-
-  <!-- Formulaire pour ajouter des revenus ou des dépenses -->
-  <div class="transaction-form">
-    <div class="inputs">
-      <form action="">
+  
+    <div class="transaction-form">
+      <div class="inputs">
         <input type="text" id="description" placeholder="Description" />
         <input type="number" id="amount" placeholder="Amount" />
-      </form>
-     
+      </div>
+      <span id="Erreur">*Veuillez entrer tous les champs</span>
     </div>
-    <span id="Erreur">*Veuillez entrer tous les champs </span>
-  </div>
-
-  <!-- Boutons pour ajouter des transactions -->
-  <div class="buttons">
-    <button id="add-income-btn" class="add-income">Add Income</button>
-    <button id="add-expense-btn" class="add-expense">Add Expense</button>
-  </div>
-
-  <!-- Transactions: Liste des revenus et dépenses -->
-  <div class="transactions">
-    <div class="income-section">
-      <h2>Income</h2>
-      <ul id="income-list">
-        <li class="transaction-item">
-          <p>sold car</p>
-          <p>$4500</p>
-        </li>
-      </ul>
+  
+    <div class="buttons">
+      <button id="add-income-btn" class="add-income">Add Income</button>
+      <button id="add-expense-btn" class="add-expense">Add Expense</button>
     </div>
-
-    <div class="expenses-section">
-      <h2>Expenses</h2>
-      <ul id="expense-list">
-        <li class="transaction-item">
-          <p>pay rent</p>
-          <p>$900</p>
-        </li>
-        <li class="transaction-item">
-          <p>phone bill</p>
-          <p>$95.88</p>
-        </li>
-        <li class="transaction-item">
-          <p>groceries</p>
-          <p>$104.97</p>
-        </li>
-        <li class="transaction-item">
-          <p>gym</p>
-          <p>$35</p>
-        </li>
-      </ul>
+  
+    <div class="transactions">
+      <div class="income-section">
+        <h2>Income</h2>
+        <ul id="income-list"></ul>
+      </div>
+  
+      <div class="expenses-section">
+        <h2>Expenses</h2>
+        <ul id="expense-list"></ul>
+      </div>
     </div>
-  </div>
-  <script src="script.js"></script>
+  
+ <script src="script.js"></script>
 </body>
 
 </html>
