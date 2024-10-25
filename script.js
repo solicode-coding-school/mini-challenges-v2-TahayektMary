@@ -1,58 +1,78 @@
-const description = document.getElementById('description'); // HTML element
-const amount = document.getElementById('amount'); // HTML element
-const addExpenseBtn = document.getElementById('add-expense-btn'); // HTML element
-const addIncomeBtn = document.getElementById('add-income-btn'); // HTML element
-const expenseList = document.getElementById('expense-list');
-const incomeList = document.getElementById ('income-list');
+const description = document.getElementById('description');
+    const amount = document.getElementById('amount');
+    const addExpenseBtn = document.getElementById('add-expense-btn');
+    const addIncomeBtn = document.getElementById('add-income-btn');
+    const expenseList = document.getElementById('expense-list');
+    const incomeList = document.getElementById('income-list');
 
+    let totalIncome = 0.00;
+    let totalExpenses = 0.00;
 
+    function createDeleteButton(listItem, isExpense, amount) {
+      const deleteBtn = document.createElement('button');
+      deleteBtn.className = 'delete-btn';
+      const icon = document.createElement('i');
+      icon.className = 'fas fa-trash';
+      deleteBtn.appendChild(icon);
 
+      deleteBtn.addEventListener('click', function () {
+        if (isExpense) {
+          totalExpenses -= amount;
+        } else {
+          totalIncome -= amount;
+        }
+        listItem.remove();
+        updateSummary();
+      });
+      return deleteBtn;
+    }
 
-let totalIncome = 0.00;
-let totalExpenses = 0.00;
+    addExpenseBtn.addEventListener('click', function() {
+      if (description.value === '' || amount.value === '' || parseFloat(amount.value) <= 0) {
+        document.getElementById('Erreur').style.visibility = 'visible';
+        return;
+      } else {
+        document.getElementById('Erreur').style.visibility = 'hidden';
+      }
 
-addExpenseBtn.addEventListener('click', function(){
+      const newExpense = document.createElement('li');
+      newExpense.classList.add('transaction-item');
+      const expenseAmount = parseFloat(amount.value);
+      newExpense.innerHTML = `<p>${description.value}</p><p>$${expenseAmount.toFixed(2)}</p>`;
+      newExpense.appendChild(createDeleteButton(newExpense, true, expenseAmount));
+      expenseList.appendChild(newExpense);
 
-  if (description=== '' && amount.value =='' && parseFloat(amount.value) > 0){
-    alert('veuillez remplir les champs')
+      totalExpenses += expenseAmount;
+      updateSummary();
 
-  const newExpense = document.createElement('li');
-  newExpense.classList.add('transaction-item');
-  newExpense.innerHTML = `<p>${description.value}</p><p>$${parseFloat(amount.value).toFixed(2)}</p>`;
-  expenseList.appendChild(newExpense);
+      description.value = '';
+      amount.value = '';
+    });
 
-  totalExpenses += parseFloat(amount.value);
+    addIncomeBtn.addEventListener('click', function() {
+      if (description.value === '' || amount.value === '' || parseFloat(amount.value) <= 0) {
+        document.getElementById('Erreur').style.visibility = 'visible';
+        return;
+      } else {
+        document.getElementById('Erreur').style.visibility = 'hidden';
+      }
 
-  updateSummary();
-    description.value = '';
-    amount.value = '';
-    // 1. ADD NEW LI ELEMENT TO INCOMES LIST
-    // 2. CALCULATE TOTAL INCOMES : mathematical operations
-    // 3. UPDATE MONEY EARNED
-    // 4. UPDATE MONEY AVAILABLE 
-  }
-});
+      const newIncome = document.createElement('li');
+      newIncome.classList.add('transaction-item');
+      const incomeAmount = parseFloat(amount.value);
+      newIncome.innerHTML = `<p>${description.value}</p><p>$${incomeAmount.toFixed(2)}</p>`;
+      newIncome.appendChild(createDeleteButton(newIncome, false, incomeAmount));
+      incomeList.appendChild(newIncome);
 
+      totalIncome += incomeAmount;
+      updateSummary();
 
-addIncomeBtn.addEventListener('click', function(){
-  const newIncome = document.createElement('li');
-  newIncome.classList.add('transaction-item');
-  newIncome.innerHTML = `<p>${description.value}</p><p>$${parseFloat(amount.value).toFixed(2)}</p>`;
-  incomeList.appendChild(newIncome);
+      description.value = '';
+      amount.value = '';
+    });
 
-  totalIncome += parseFloat(amount.value);
-
-updateSummary();
-     
-     description.value = '';
-     amount.value = '';
-  // 1. ADD NEW LI ELEMENT TO EXPENSES LIST : createElement(), appendChild()
-  // 2. CALCULATE TOTAL EXPENSES : mathematical operations
-  // 3. UPDATE MONEY SPENT : innerHTML or innerText or textContent
-  // 4. UPDATE MONEY AVAILABLE : innerHTML or innerText or textContent
-});
-function updateSummary() {
-  document.getElementById('money-earned').innerText = `$${totalIncome.toFixed(2)}`;
-  document.getElementById('money-spent').innerText = `$${totalExpenses.toFixed(2)}`;
-  document.getElementById('money-available').innerText = `$${(totalIncome - totalExpenses).toFixed(2)}`;
-}
+    function updateSummary() {
+      document.getElementById('money-earned').innerText = `$${totalIncome.toFixed(2)}`;
+      document.getElementById('money-spent').innerText = `$${totalExpenses.toFixed(2)}`;
+      document.getElementById('money-available').innerText = `$${(totalIncome - totalExpenses).toFixed(2)}`;
+    }
